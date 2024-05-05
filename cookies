@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cookie Example</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Cookie Example</h1>
+    <button onclick="setCookie()">Set Cookie</button>
+    <p id="cookieValue"></p>
+</div>
+
+<script>
+    function setCookie() {
+        var cookieName = "example_cookie";
+        var cookieValue = "Hello, World!";
+        document.cookie = cookieName + "=" + cookieValue + "; path=/";
+    }
+
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var cookies = document.cookie.split(';');
+        for(var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            while (cookie.charAt(0) == ' ') {
+                cookie = cookie.substring(1, cookie.length);
+            }
+            if (cookie.indexOf(nameEQ) == 0) {
+                return cookie.substring(nameEQ.length, cookie.length);
+            }
+        }
+        return null;
+    }
+
+    window.onload = function() {
+        var cookieValue = getCookie("example_cookie");
+        if (cookieValue) {
+            document.getElementById("cookieValue").innerText = "Cookie Value: " + cookieValue;
+        } else {
+            document.getElementById("cookieValue").innerText = "No cookie set.";
+        }
+    };
+</script>
+</body>
+</html>
