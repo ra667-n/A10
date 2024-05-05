@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cookie Example</title>
+<script>
+
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -31,10 +30,10 @@
     }
 
     function getCookie(name) {
-        var nameEQ = name + "=";
-        var cookies = document.cookie.split(';');
+        let nameEQ = name + "=";
+        let cookies = document.cookie.split(';');
         for(var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i];
+            let cookie = cookies[i];
             while (cookie.charAt(0) == ' ') {
                 cookie = cookie.substring(1, cookie.length);
             }
@@ -42,17 +41,20 @@
                 return cookie.substring(nameEQ.length, cookie.length);
             }
         }
-        return null;
+        return "";
     }
-
-    window.onload = function() {
-        var cookieValue = getCookie("example_cookie");
-        if (cookieValue) {
-            document.getElementById("cookieValue").innerText = "Cookie Value: " + cookieValue;
-        } else {
-            document.getElementById("cookieValue").innerText = "No cookie set.";
-        }
-    };
+  function checkCookie() {
+  let user = getCookie("username");
+  if (user != "") {
+    alert("Welcome again " + user);
+  } else {
+     user = prompt("Please enter your name:","");
+     if (user != "" && user != "") {
+       setCookie("username", user, 30);
+     }
+   }
+}
 </script>
-</body>
+</head>
+<p> Roheemat Adebiyi A10 4/11/24 </p>
 </html>
